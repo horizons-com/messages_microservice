@@ -26,16 +26,16 @@ public class Message {
         this.content = content;
     }
 
-    public String getSenderId() {
-        return senderId.toHexString();
+    public ObjectId getSenderId() {
+        return senderId;
     }
 
     public void setSenderId(ObjectId senderId) {
         this.senderId = senderId;
     }
 
-    public String getRecipientId() {
-        return recipientId.toHexString();
+    public ObjectId getRecipientId() {
+        return recipientId;
     }
 
     public void setRecipientId(ObjectId recipientId) {
