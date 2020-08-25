@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Instant;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,7 @@ public class MessageController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Message createMessage (@Valid @RequestBody Message message) {
         message.setId(ObjectId.get());
+        message.setDate(Instant.now());
         repository.save(message);
         return message;
     }

@@ -3,12 +3,16 @@ package com.horizons.messages_microservice.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import java.time.Instant;
+import java.util.Date;
+
 public class Message {
     @Id
     private ObjectId id;
     private String content;
     private ObjectId senderId;
     private ObjectId recipientId;
+    private Instant date;
 
     public String getId() {
         return id.toHexString();
@@ -40,5 +44,13 @@ public class Message {
 
     public void setRecipientId(ObjectId recipientId) {
         this.recipientId = recipientId;
+    }
+
+    public Instant getDate() {
+        return date;
+    }
+
+    public void setDate(Instant date) {
+        this.date = date;
     }
 }
