@@ -11,7 +11,6 @@ import java.time.Instant;
 import java.util.List;
 
 @RestController
-@RequestMapping("/messages")
 public class MessageController {
     @Autowired
     private MessageRepository repository;
