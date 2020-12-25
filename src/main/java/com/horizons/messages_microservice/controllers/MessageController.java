@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/messages")
 public class MessageController {
     @Autowired
     private MessageRepository repository;
@@ -23,6 +23,25 @@ public class MessageController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Message getMessageById(@PathVariable("id") ObjectId id) {
         return repository.findById(id);
+    }
+
+    @RequestMapping(value = "/sender/user/{username}", method = RequestMethod.GET)
+    public List<Message> getMessageBySenderUsername(@PathVariable("username") String username) {
+        return repository.findMessageBySenderUsername(username);
+    }
+
+    @RequestMapping(value = "/recipient/user/{username}", method = RequestMethod.GET)
+    public List<Message> getMessageByRecipientUsername(@PathVariable("username") String username) {
+        return repository.findMessageByRecipientUsername(username);
+
+    }
+
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
+    public List<Message> getMessageByUsername(@PathVariable("username") String username) {
+        List<Message> result = new ArrayList<>();
+        result.addAll(repository.findMessageBySenderUsername(username));
+        result.addAll(repository.findMessageByRecipientUsername(username));
+        return result;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
