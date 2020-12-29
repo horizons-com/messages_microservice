@@ -20,7 +20,7 @@ eureka:
 
 # HTTP Server (Tomcat) Port
 server:
-  port: 3333
+  port: 5555
 
 # Disable Spring Boot's "Whitelabel" default error page, so we can use our own
 error:
